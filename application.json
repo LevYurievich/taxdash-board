@@ -32,15 +32,15 @@
       "isDefault": false
     },
     {
-      "id": "Налоговый календарь",
-      "isDefault": false
-    },
-    {
       "id": "Компании",
       "isDefault": false
     },
     {
       "id": "Обязательные задачи",
+      "isDefault": false
+    },
+    {
+      "id": "Налоговый календарь",
       "isDefault": false
     }
   ],
