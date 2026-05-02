@@ -1,0 +1,4 @@
+UPDATE companies
+SET is_active = FALSE
+WHERE id = {{ tblCompanies.selectedRow.ID }}
+RETURNING id, name;

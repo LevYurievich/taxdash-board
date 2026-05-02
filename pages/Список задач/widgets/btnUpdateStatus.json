@@ -1,0 +1,58 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 92,
+  "boxShadow": "none",
+  "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "buttonVariant": "PRIMARY",
+  "disabledWhenInvalid": false,
+  "dynamicBindingPathList": [
+    {
+      "key": "buttonColor"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "isDisabled"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "isDisabled"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "isDefaultClickDisabled": true,
+  "isDisabled": "{{\n  !Table1.selectedRow?.ID ||\n  !selNewStatus.selectedOptionValue ||\n  q_update_task_status.isRunning\n}}\n\n",
+  "isLoading": false,
+  "isVisible": true,
+  "key": "35a9ei0yzc",
+  "leftColumn": 22,
+  "minWidth": 120,
+  "mobileBottomRow": 54,
+  "mobileLeftColumn": 27,
+  "mobileRightColumn": 43,
+  "mobileTopRow": 50,
+  "needsErrorInfo": false,
+  "onClick": "{{q_update_task_status.run().then(() => {\n  q_checklist_60.run();\n  showAlert('Статус обновлен', 'success');\n}).catch(() => {\n  showAlert('Не удалось обновить статус. Выберите строку в таблице и новый статус.', 'error');\n  q_checklist_60.run();\n});}}",
+  "parentColumnSpace": 13.0625,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "placement": "CENTER",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": false,
+  "responsiveBehavior": "hug",
+  "rightColumn": 41,
+  "text": "Обновить статус",
+  "topRow": 88,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "n3dnb54ctn",
+  "widgetName": "btnUpdateStatus"
+}

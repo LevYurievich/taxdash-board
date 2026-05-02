@@ -1,0 +1,6 @@
+SELECT
+  c.name AS label,
+  c.id   AS value
+FROM companies c
+WHERE c.is_active = TRUE
+ORDER BY c.name;

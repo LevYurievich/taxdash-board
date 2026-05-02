@@ -1,0 +1,12 @@
+SELECT
+  id AS "ID",
+  name AS "Компания",
+  inn AS "ИНН",
+  kpp AS "КПП",
+  tax_regime AS "Режим",
+  revenue_limit AS "Лимит_выручки",
+  revenue_ytd AS "Выручка_YTD",
+  is_active AS "Активна"
+FROM companies
+WHERE is_active = TRUE
+ORDER BY name;

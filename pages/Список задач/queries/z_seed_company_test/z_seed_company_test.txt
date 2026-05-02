@@ -1,0 +1,4 @@
+INSERT INTO companies (name, inn, kpp, tax_regime, revenue_limit, revenue_ytd)
+VALUES ('ООО Тест', '7701234567', '770101001', 'ОСНО', 10000000, 0)
+ON CONFLICT (inn, kpp) DO UPDATE
+SET name = EXCLUDED.name;

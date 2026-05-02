@@ -1,0 +1,64 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 73,
+  "boxShadow": "none",
+  "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "buttonVariant": "PRIMARY",
+  "disabledWhenInvalid": "{{\n  !selTaskCompany.selectedOptionValue ||\n  !inpTaskTitle.text?.trim() ||\n  !selTaskKind.selectedOptionValue ||\n  !selTaskPriority.selectedOptionValue ||\n  !dpTaskDue.selectedDate ||\n  !selAssignee.selectedOptionValue ||\n  q_task_insert_manual.isRunning\n}}\n",
+  "dynamicBindingPathList": [
+    {
+      "key": "buttonColor"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "disabledWhenInvalid"
+    },
+    {
+      "key": "isDisabled"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "disabledWhenInvalid"
+    },
+    {
+      "key": "isDisabled"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "isDefaultClickDisabled": true,
+  "isDisabled": "{{\n  !selTaskCompany.selectedOptionValue ||\n  !inpTaskTitle.text?.trim() ||\n  !selTaskKind.selectedOptionValue ||\n  !selTaskPriority.selectedOptionValue ||\n  !dpTaskDue.selectedDate ||\n  !selAssignee.selectedOptionValue ||\n  q_task_insert_manual.isRunning\n}}\n",
+  "isLoading": false,
+  "isVisible": true,
+  "key": "35a9ei0yzc",
+  "leftColumn": 22,
+  "minWidth": 120,
+  "mobileBottomRow": 54,
+  "mobileLeftColumn": 27,
+  "mobileRightColumn": 43,
+  "mobileTopRow": 50,
+  "needsErrorInfo": false,
+  "onClick": "{{q_task_insert_manual.run().then(() => {\n  q_checklist_60.run();\n  showAlert('Задача добавлена', 'success');\n}).catch(() => {\n  showAlert('Не удалось добавить задачу', 'error');\n});}}",
+  "parentColumnSpace": 13.0625,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "placement": "CENTER",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": false,
+  "responsiveBehavior": "hug",
+  "rightColumn": 41,
+  "text": "Добавить задачу",
+  "topRow": 69,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "oc0jj310ve",
+  "widgetName": "btnAddTask"
+}

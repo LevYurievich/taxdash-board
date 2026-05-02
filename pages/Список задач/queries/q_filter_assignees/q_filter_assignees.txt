@@ -1,0 +1,5 @@
+SELECT
+  u.full_name AS label,
+  u.id        AS value
+FROM users u
+ORDER BY u.full_name;

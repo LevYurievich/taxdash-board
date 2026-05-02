@@ -1,0 +1,6 @@
+SELECT
+  id AS value,
+  full_name AS label
+FROM users
+WHERE is_active = TRUE
+ORDER BY full_name;

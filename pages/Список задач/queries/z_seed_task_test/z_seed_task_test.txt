@@ -1,0 +1,23 @@
+INSERT INTO tasks (
+  company_id,
+  title,
+  kind,
+  due_date,
+  status,
+  priority,
+  assignee_user_id,
+  source
+)
+SELECT
+  c.id,
+  'Тестовая задача: проверить отчетность',
+  'report',
+  CURRENT_DATE + INTERVAL '7 days',
+  'open',
+  'high',
+  u.id,
+  'manual'
+FROM companies c
+JOIN users u ON u.email = 'finance@example.local'
+WHERE c.inn = '7701234567' AND c.kpp = '770101001'
+LIMIT 1;

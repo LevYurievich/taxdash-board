@@ -1,0 +1,11 @@
+WITH p AS (
+  SELECT
+    NULLIF(CAST({{ selSetCompany.selectedOptionValue || '' }} AS text), '')::bigint AS company_id,
+    NULLIF(CAST({{ selSetAssignee.selectedOptionValue || '' }} AS text), '')::uuid AS assignee_id
+)
+SELECT
+  CASE
+    WHEN p.company_id IS NULL OR p.assignee_id IS NULL THEN 0
+    ELSE generate_tasks_for_next_2_months(p.company_id, p.assignee_id, p.assignee_id)
+  END AS created_tasks
+FROM p;

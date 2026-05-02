@@ -1,0 +1,13 @@
+UPDATE tasks
+SET
+  status = CASE
+    WHEN NULLIF(CAST({{ selNewStatus.selectedOptionValue || '' }} AS text), '') IS NULL THEN status
+    ELSE NULLIF(CAST({{ selNewStatus.selectedOptionValue || '' }} AS text), '')::task_status
+  END,
+  completed_at = CASE
+    WHEN NULLIF(CAST({{ selNewStatus.selectedOptionValue || '' }} AS text), '') IS NULL THEN completed_at
+    WHEN NULLIF(CAST({{ selNewStatus.selectedOptionValue || '' }} AS text), '') = 'done' THEN now()
+    ELSE NULL
+  END
+WHERE id = NULLIF(CAST({{ Table1.selectedRow.ID || '' }} AS text), '')::bigint
+RETURNING id, status, completed_at;

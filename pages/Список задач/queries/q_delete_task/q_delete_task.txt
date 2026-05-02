@@ -1,0 +1,7 @@
+WITH v AS (
+  SELECT NULLIF(CAST({{ Table1.selectedRow.ID || '' }} AS text), '')::bigint AS task_id
+)
+DELETE FROM tasks t
+USING v
+WHERE t.id = v.task_id
+RETURNING t.id;

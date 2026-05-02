@@ -1,0 +1,11 @@
+INSERT INTO companies (name, inn, kpp, tax_regime, revenue_limit, revenue_ytd, is_active)
+VALUES (
+  TRIM(CAST({{ inpCompanyName.text || '' }} AS text)),
+  regexp_replace(CAST({{ inpInn.text || '' }} AS text), '[^0-9]', '', 'g'),
+  NULLIF(regexp_replace(CAST({{ inpKpp.text || '' }} AS text), '[^0-9]', '', 'g'), ''),
+  CAST({{ selRegime.selectedOptionValue || 'ОСНО' }} AS text),
+  COALESCE(NULLIF(regexp_replace(CAST({{ inpLimit.text || '' }} AS text), '[^0-9]', '', 'g'), '')::numeric, 0),
+  COALESCE(NULLIF(regexp_replace(CAST({{ inpYtd.text || '' }} AS text), '[^0-9]', '', 'g'), '')::numeric, 0),
+  TRUE
+)
+RETURNING id;
