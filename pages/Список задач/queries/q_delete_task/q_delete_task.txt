@@ -1,7 +1,12 @@
-WITH v AS (
-  SELECT NULLIF(CAST({{ Table1.selectedRow.ID || '' }} AS text), '')::bigint AS task_id
+WITH me AS (
+  SELECT 1 AS ok
+  FROM users
+  WHERE lower(email) = lower('{{appsmith.user.email}}')
+    AND role = 'finance_manager'
+    AND is_active = true
+  LIMIT 1
 )
 DELETE FROM tasks t
-USING v
-WHERE t.id = v.task_id
+USING me
+WHERE t.id = NULLIF(CAST({{ Table1.selectedRow.ID || '' }} AS text), '')::bigint
 RETURNING t.id;

@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "WITH v AS (\n  SELECT NULLIF(CAST({{ Table1.selectedRow.ID || '' }} AS text), '')::bigint AS task_id\n)\nDELETE FROM tasks t\nUSING v\nWHERE t.id = v.task_id\nRETURNING t.id;\n",
+      "body": "WITH me AS (\n  SELECT 1 AS ok\n  FROM users\n  WHERE lower(email) = lower('{{appsmith.user.email}}')\n    AND role = 'finance_manager'\n    AND is_active = true\n  LIMIT 1\n)\nDELETE FROM tasks t\nUSING me\nWHERE t.id = NULLIF(CAST({{ Table1.selectedRow.ID || '' }} AS text), '')::bigint\nRETURNING t.id;\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
@@ -29,7 +29,7 @@
     ],
     "name": "q_delete_task",
     "pageId": "Список задач",
-    "runBehaviour": "MANUAL",
-    "userSetOnLoad": false
+    "runBehaviour": "ON_PAGE_LOAD",
+    "userSetOnLoad": true
   }
 }

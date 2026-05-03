@@ -25,7 +25,7 @@
     "dynamicBindingPathList": [],
     "name": "q_users_test",
     "pageId": "Список задач",
-    "runBehaviour": "MANUAL",
-    "userSetOnLoad": false
+    "runBehaviour": "ON_PAGE_LOAD",
+    "userSetOnLoad": true
   }
 }

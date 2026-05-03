@@ -1,13 +1,18 @@
-UPDATE tasks
+WITH me AS (
+  SELECT 1 AS ok
+  FROM users
+  WHERE lower(email) = lower('{{appsmith.user.email}}')
+    AND role = 'finance_manager'
+    AND is_active = true
+  LIMIT 1
+)
+UPDATE tasks t
 SET
-  status = CASE
-    WHEN NULLIF(CAST({{ selNewStatus.selectedOptionValue || '' }} AS text), '') IS NULL THEN status
-    ELSE NULLIF(CAST({{ selNewStatus.selectedOptionValue || '' }} AS text), '')::task_status
-  END,
+  status = NULLIF(CAST({{ selNewStatus.selectedOptionValue || '' }} AS text), '')::task_status,
   completed_at = CASE
-    WHEN NULLIF(CAST({{ selNewStatus.selectedOptionValue || '' }} AS text), '') IS NULL THEN completed_at
     WHEN NULLIF(CAST({{ selNewStatus.selectedOptionValue || '' }} AS text), '') = 'done' THEN now()
     ELSE NULL
   END
-WHERE id = NULLIF(CAST({{ Table1.selectedRow.ID || '' }} AS text), '')::bigint
-RETURNING id, status, completed_at;
+FROM me
+WHERE t.id = NULLIF(CAST({{ Table1.selectedRow.ID || '' }} AS text), '')::bigint
+RETURNING t.id, t.status, t.completed_at;

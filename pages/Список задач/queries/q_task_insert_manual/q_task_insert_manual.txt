@@ -1,4 +1,12 @@
-WITH v AS (
+WITH me AS (
+  SELECT 1 AS ok
+  FROM users
+  WHERE lower(email) = lower('{{appsmith.user.email}}')
+    AND role = 'finance_manager'
+    AND is_active = true
+  LIMIT 1
+),
+v AS (
   SELECT
     NULLIF(CAST({{ selTaskCompany.selectedOptionValue || '' }} AS text), '')::bigint AS company_id,
     NULLIF(TRIM(CAST({{ inpTaskTitle.text || '' }} AS text)), '') AS title,
@@ -8,16 +16,15 @@ WITH v AS (
     NULLIF(CAST({{ selAssignee.selectedOptionValue || '' }} AS text), '')::uuid AS assignee_user_id,
     NULLIF(TRIM(CAST({{ inpTaskNotes.text || '' }} AS text)), '') AS notes
 )
-INSERT INTO tasks (
-  company_id, title, kind, status, priority, due_date, assignee_user_id, notes
-)
-SELECT
-  company_id, title, kind, 'open'::task_status, priority, due_date, assignee_user_id, notes
+INSERT INTO tasks (company_id, title, kind, status, priority, due_date, assignee_user_id, notes)
+SELECT v.company_id, v.title, v.kind, 'open'::task_status, v.priority, v.due_date, v.assignee_user_id, v.notes
 FROM v
-WHERE company_id IS NOT NULL
-  AND title IS NOT NULL
-  AND kind IS NOT NULL
-  AND priority IS NOT NULL
-  AND due_date IS NOT NULL
-  AND assignee_user_id IS NOT NULL
+JOIN me ON true
+WHERE v.company_id IS NOT NULL
+  AND v.title IS NOT NULL
+  AND v.kind IS NOT NULL
+  AND v.priority IS NOT NULL
+  AND v.due_date IS NOT NULL
+  AND v.assignee_user_id IS NOT NULL
 RETURNING id;
+
