@@ -1,0 +1,4 @@
+SELECT id, full_name, email, role
+FROM users
+WHERE lower(email) IN ('89224033969@mail.ru', '236744@mail.ru')
+ORDER BY email;

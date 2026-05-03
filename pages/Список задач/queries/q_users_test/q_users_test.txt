@@ -1,0 +1,8 @@
+UPDATE users
+SET role = CASE
+  WHEN lower(email) = '89224033969@mail.ru' THEN 'finance_manager'
+  WHEN lower(email) = '236744@mail.ru'      THEN 'executive'
+  ELSE role
+END
+WHERE lower(email) IN ('89224033969@mail.ru', '236744@mail.ru')
+RETURNING id, full_name, email, role;

@@ -15,11 +15,17 @@
     },
     {
       "key": "isDisabled"
+    },
+    {
+      "key": "isVisible"
     }
   ],
   "dynamicPropertyPathList": [
     {
       "key": "isDisabled"
+    },
+    {
+      "key": "isVisible"
     }
   ],
   "dynamicTriggerPathList": [
@@ -30,7 +36,7 @@
   "isDefaultClickDisabled": true,
   "isDisabled": "{{ !Table1.selectedRow?.ID || q_delete_task.isRunning }}\n",
   "isLoading": false,
-  "isVisible": true,
+  "isVisible": "{{ q_current_user_role.data?.[0]?.role === 'finance_manager' }}\n",
   "key": "enpm7rqh6x",
   "leftColumn": 2,
   "minWidth": 120,

@@ -15,11 +15,17 @@
     },
     {
       "key": "isDisabled"
+    },
+    {
+      "key": "isVisible"
     }
   ],
   "dynamicPropertyPathList": [
     {
       "key": "isDisabled"
+    },
+    {
+      "key": "isVisible"
     }
   ],
   "dynamicTriggerPathList": [
@@ -30,7 +36,7 @@
   "isDefaultClickDisabled": true,
   "isDisabled": "{{ !selSetCompany.selectedOptionValue || !selSetAssignee.selectedOptionValue }}\n",
   "isLoading": false,
-  "isVisible": true,
+  "isVisible": "{{ q_current_user_role.data?.[0]?.role === 'finance_manager' }}\n",
   "key": "35a9ei0yzc",
   "leftColumn": 1,
   "minWidth": 120,

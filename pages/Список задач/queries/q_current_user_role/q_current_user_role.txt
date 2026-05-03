@@ -1,0 +1,5 @@
+SELECT role
+FROM users
+WHERE lower(email) = lower('{{appsmith.user.email}}')
+  AND is_active = true
+LIMIT 1;

@@ -1,0 +1,3 @@
+SELECT id, full_name, email, role
+FROM users
+ORDER BY email;

@@ -1,0 +1,3 @@
+UPDATE users
+SET is_active = false
+WHERE lower(email) IN ('finance@example.local', 'executive@example.local');

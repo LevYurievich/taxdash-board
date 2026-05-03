@@ -18,6 +18,9 @@
     },
     {
       "key": "isDisabled"
+    },
+    {
+      "key": "isVisible"
     }
   ],
   "dynamicPropertyPathList": [
@@ -26,6 +29,9 @@
     },
     {
       "key": "isDisabled"
+    },
+    {
+      "key": "isVisible"
     }
   ],
   "dynamicTriggerPathList": [
@@ -36,7 +42,7 @@
   "isDefaultClickDisabled": true,
   "isDisabled": "{{\n  !selTaskCompany.selectedOptionValue ||\n  !inpTaskTitle.text?.trim() ||\n  !selTaskKind.selectedOptionValue ||\n  !selTaskPriority.selectedOptionValue ||\n  !dpTaskDue.selectedDate ||\n  !selAssignee.selectedOptionValue ||\n  q_task_insert_manual.isRunning\n}}\n",
   "isLoading": false,
-  "isVisible": true,
+  "isVisible": "{{ q_current_user_role.data?.[0]?.role === 'finance_manager' }}\n",
   "key": "35a9ei0yzc",
   "leftColumn": 22,
   "minWidth": 120,

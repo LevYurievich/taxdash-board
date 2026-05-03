@@ -1,0 +1,11 @@
+INSERT INTO users (full_name, email, role, is_active)
+SELECT 'Финансист', '89224033969@mail.ru', 'finance_manager', true
+WHERE NOT EXISTS (
+  SELECT 1 FROM users WHERE lower(email) = '89224033969@mail.ru'
+);
+
+INSERT INTO users (full_name, email, role, is_active)
+SELECT 'Руководитель', '236744@mail.ru', 'executive', true
+WHERE NOT EXISTS (
+  SELECT 1 FROM users WHERE lower(email) = '236744@mail.ru'
+);
