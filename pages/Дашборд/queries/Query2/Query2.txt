@@ -1,0 +1,9 @@
+INSERT INTO users (full_name, email, role, is_active)
+SELECT 'Мария', '{{appsmith.user.email}}', 'finance_manager', true
+WHERE NOT EXISTS (
+  SELECT 1 FROM users WHERE lower(email) = lower('{{appsmith.user.email}}')
+);
+
+UPDATE users
+SET role = 'finance_manager', is_active = true
+WHERE lower(email) = lower('{{appsmith.user.email}}');
